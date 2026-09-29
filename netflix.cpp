@@ -18,17 +18,32 @@ map<string, vector<string>> movies = {
     {"John Wick", {"Action", "Thriller"}},
     {"Shrek", {"Comedy", "Fantasy"}},
     {"The Conjuring", {"Horror", "Thriller"}},
-    {"The Notebook", {"Romance", "Drama"}}};
+    {"The Notebook", {"Romance", "Drama"}},
+    {"The Dark Knight", {"Action", "Drama"}},
+    {"Superbad", {"Comedy"}},
+    {"The Exorcist", {"Horror"}},
+    {"Inception", {"Sci-Fi", "Drama"}},
+    {"Harry Potter", {"Fantasy"}},
+    {"Titanic", {"Romance", "Drama"}},
+    {"Mad Max: Fury Road", {"Action"}},
+    {"21 Jump Street", {"Comedy"}},
+    {"A Quiet Place", {"Horror", "Sci-Fi"}},
+    {"The Lord of the Rings", {"Fantasy", "Drama"}},
+    {"Guardians of the Galaxy", {"Action", "Sci-Fi"}},
+    {"The Hangover", {"Comedy"}},
+    {"Insidious", {"Horror"}},
+    {"The Matrix", {"Sci-Fi", "Action"}},
+    {"La La Land", {"Romance", "Drama"}}};
 
 int main()
 {
     int userInput;
 
-    cout << "Netflix Movie Recommender" << endl;
-
     // infinite loop unless user exits
     while (true)
     {
+        cout << "\nNetflix Movie Recommender" << endl;
+
         cout << "\nChoose a genre:" << endl;
         cout << "1. Action" << endl;
         cout << "2. Comedy" << endl;
@@ -37,7 +52,8 @@ int main()
         cout << "5. Fantasy" << endl;
         cout << "6. Drama" << endl;
         cout << "7. Romance" << endl;
-        cout << "0. Exit" << endl;
+        cout << "0. Exit\n"
+             << endl;
 
         cin >> userInput;
 
@@ -52,7 +68,28 @@ int main()
         {
             break;
         }
-    }
+        else if (userInput >= 1 && userInput <= 7)
+        {
+            string selectedGenre = genres[userInput];
 
+            cout << "\nRecommended movies for " << selectedGenre << ":" << endl;
+
+            for (auto movie : movies)
+            {
+                for (auto genre : movie.second)
+                {
+                    if (genre == selectedGenre)
+                    {
+                        cout << "- " << movie.first << endl;
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            cout << "Invalid choice. Please select 0-7." << endl;
+        }
+    }
     return 0;
 }
